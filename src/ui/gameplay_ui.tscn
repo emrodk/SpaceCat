@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbp7oaawcee7p"]
+
+[ext_resource type="Script" path="res://src/ui/gameplay_ui.gd" id="1_2rv3v"]
+[ext_resource type="FontFile" uid="uid://cb8trr2licpyn" path="res://assets/font/PIXEBOY.TTF" id="2_w6gbh"]
+
+[sub_resource type="FontVariation" id="FontVariation_cs73l"]
+base_font = ExtResource("2_w6gbh")
+
+[node name="GameplayUI" type="Control" node_paths=PackedStringArray("label", "timer")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2rv3v")
+label = NodePath("TimeLabel")
+timer = NodePath("ScoreTimer")
+
+[node name="TimeLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_fonts/font = SubResource("FontVariation_cs73l")
+theme_override_font_sizes/font_size = 22
+text = "999999"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ScoreTimer" type="Timer" parent="."]
+
+[connection signal="draw" from="." to="." method="_on_draw"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_timer_2_timeout"]

@@ -1,0 +1,77 @@
+[gd_scene load_steps=8 format=3 uid="uid://mhtv3yjbed8y"]
+
+[ext_resource type="Script" path="res://src/ui/start_menu_ui.gd" id="1_fiunj"]
+[ext_resource type="FontFile" uid="uid://cb8trr2licpyn" path="res://assets/font/PIXEBOY.TTF" id="1_gkbn2"]
+[ext_resource type="Texture2D" uid="uid://dg5kjepeso6nl" path="res://assets/ui/Start_Retry-32x16.png" id="2_jqpow"]
+[ext_resource type="AudioStream" uid="uid://bdll13ievopek" path="res://assets/audio/start.wav" id="4_bktu7"]
+
+[sub_resource type="FontVariation" id="FontVariation_vw0uo"]
+base_font = ExtResource("1_gkbn2")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jywmt"]
+atlas = ExtResource("2_jqpow")
+region = Rect2(42, 4, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4aj1"]
+atlas = ExtResource("2_jqpow")
+region = Rect2(4, 4, 32, 16)
+
+[node name="StartMenuUI" type="Control" node_paths=PackedStringArray("start_sound")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fiunj")
+start_sound = NodePath("StartSound")
+
+[node name="DarkOverlay" type="ColorRect" parent="."]
+modulate = Color(0.117647, 0.117647, 0.117647, 0.533333)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(30, 10)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 25.0
+offset_right = 20.0
+offset_bottom = 84.0
+grow_horizontal = 2
+theme_override_fonts/font = SubResource("FontVariation_vw0uo")
+theme_override_font_sizes/font_size = 48
+text = "Space Cat"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StartSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_bktu7")
+
+[node name="StartButton" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(20, 10)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = 52.0
+offset_right = 22.0
+offset_bottom = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = SubResource("AtlasTexture_jywmt")
+texture_pressed = SubResource("AtlasTexture_d4aj1")
+stretch_mode = 5
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]

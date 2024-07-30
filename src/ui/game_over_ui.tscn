@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=3 uid="uid://cradoj81mjg3g"]
+
+[ext_resource type="Script" path="res://src/ui/game_over_ui.gd" id="1_gxwhi"]
+[ext_resource type="FontFile" uid="uid://cb8trr2licpyn" path="res://assets/font/PIXEBOY.TTF" id="2_4fost"]
+[ext_resource type="Texture2D" uid="uid://dg5kjepeso6nl" path="res://assets/ui/Start_Retry-32x16.png" id="3_ocyma"]
+[ext_resource type="AudioStream" uid="uid://8f2a4sv3ykb7" path="res://assets/audio/Game Over.wav" id="4_lbcve"]
+
+[sub_resource type="FontVariation" id="FontVariation_mmami"]
+base_font = ExtResource("2_4fost")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eou1s"]
+atlas = ExtResource("3_ocyma")
+region = Rect2(42, 26, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_phwe8"]
+atlas = ExtResource("3_ocyma")
+region = Rect2(4, 26, 32, 16)
+
+[node name="GameOverUI" type="Control" node_paths=PackedStringArray("game_over_sound")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -0.114998
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gxwhi")
+game_over_sound = NodePath("GameOverSound")
+
+[node name="DarkOverlay" type="ColorRect" parent="."]
+modulate = Color(0.117647, 0.117647, 0.117647, 0.533333)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOverLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(30, 10)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0005
+offset_top = 16.0
+offset_right = 19.9995
+offset_bottom = 75.0
+grow_horizontal = 2
+theme_override_fonts/font = SubResource("FontVariation_mmami")
+theme_override_font_sizes/font_size = 48
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="RetryButton" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(20, 10)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.9425
+offset_top = -46.0
+offset_right = 23.0575
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = SubResource("AtlasTexture_eou1s")
+texture_pressed = SubResource("AtlasTexture_phwe8")
+stretch_mode = 5
+
+[node name="GameOverSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_lbcve")
+
+[connection signal="pressed" from="RetryButton" to="." method="_on_button_pressed"]
+[connection signal="finished" from="GameOverSound" to="." method="_on_game_over_sound_finished"]

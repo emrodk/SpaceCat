@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvq6qhj00xnse"]
+
+[ext_resource type="Script" path="res://src/2d/general/spawner.gd" id="1_celiq"]
+[ext_resource type="PackedScene" uid="uid://84sfcmm4hofc" path="res://src/2d/enemy/asteroid.tscn" id="2_1a64n"]
+
+[sub_resource type="Curve2D" id="Curve2D_yjvwl"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -3, -15, 0, 0, 0, 0, 162, -12, 0, 0, 0, 0, 168, 239, 0, 0, 0, 0, -20, 237, 0, 0, 0, 0, -19, -17, 0, 0, 0, 0, -3, -15)
+}
+point_count = 6
+
+[node name="Spawner" type="Path2D" node_paths=PackedStringArray("follow")]
+position = Vector2(-3, 4)
+curve = SubResource("Curve2D_yjvwl")
+script = ExtResource("1_celiq")
+asteroid_scene = ExtResource("2_1a64n")
+follow = NodePath("PathFollow2D")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(-3, -15)
+rotation = 0.0181798
+rotates = false
