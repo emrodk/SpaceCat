@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://rh8yc3xu2xv5"]
+[gd_scene load_steps=12 format=3 uid="uid://rh8yc3xu2xv5"]
 
 [ext_resource type="Texture2D" uid="uid://do7o1dx18rwi0" path="res://assets/ui/Background-72x108.png" id="1_1i7fc"]
 [ext_resource type="PackedScene" uid="uid://cx2u68bjwvp6y" path="res://src/2d/player/cat.tscn" id="2_ag28v"]
-[ext_resource type="AudioStream" uid="uid://dukqgu6phrjcy" path="res://assets/audio/Level Song.wav" id="4_863js"]
 [ext_resource type="PackedScene" uid="uid://bvq6qhj00xnse" path="res://src/2d/general/spawner.tscn" id="4_jd0t8"]
 [ext_resource type="PackedScene" uid="uid://bbp7oaawcee7p" path="res://src/ui/gameplay_ui.tscn" id="5_gll61"]
 [ext_resource type="PackedScene" uid="uid://cradoj81mjg3g" path="res://src/ui/game_over_ui.tscn" id="6_13eig"]
@@ -74,10 +73,6 @@ editor_draw_limits = true
 [node name="SpawnTimer" type="Timer" parent="."]
 autostart = true
 
-[node name="LevelSong" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_863js")
-autoplay = true
-
 [node name="UICanvas" type="CanvasLayer" parent="."]
 
 [node name="MainUi" type="Control" parent="UICanvas"]
@@ -94,10 +89,9 @@ metadata/_edit_lock_ = true
 visible = false
 layout_mode = 1
 
-[node name="GameOverUI" parent="UICanvas/MainUi" node_paths=PackedStringArray("_level_song") instance=ExtResource("6_13eig")]
+[node name="GameOverUI" parent="UICanvas/MainUi" instance=ExtResource("6_13eig")]
 visible = false
 layout_mode = 1
-_level_song = NodePath("../../../LevelSong")
 
 [node name="StartMenuUI" parent="UICanvas/MainUi" instance=ExtResource("7_58ony")]
 layout_mode = 1

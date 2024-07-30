@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bc0plc04mysx3"]
+
+[ext_resource type="AudioStream" uid="uid://dukqgu6phrjcy" path="res://assets/audio/Level Song.wav" id="1_wtiyy"]
+[ext_resource type="Script" path="res://src/autoloads/SoundManager.gd" id="1_yt3wq"]
+
+[node name="SoundManager" type="Node" node_paths=PackedStringArray("level_song")]
+script = ExtResource("1_yt3wq")
+level_song = NodePath("LevelSong")
+
+[node name="LevelSong" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_wtiyy")
+autoplay = true
